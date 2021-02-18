@@ -9,7 +9,7 @@ sequelize.authenticate().then(
     function() {
         console.log('Connected to recipe-list postgress database');
     },
-    function(err) {
+    function(err){
         console.log(err);
     }
 );
