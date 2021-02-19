@@ -24,4 +24,15 @@ router.post('/create', function (req, res) {
         .catch(err => res.status(500).json({ error: err }))
 });
 
+// FIND ALL RECIPES FOR INDIVIDUAL USERS
+router.get('/', (req, res) => {
+    
+    Recipe.findAll()
+       
+        .then(recipes => res.status(200).json(recipes))
+        
+        .catch(err =>res.status(500).json({ error: err }))
+});
+
+
 module.exports = router;
