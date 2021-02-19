@@ -5,11 +5,11 @@ const sequelize = new Sequelize('recipe-list', 'postgres', 'password', {
     dialect: 'postgres'
 });
 
-sequelize.authentication().then (
+sequelize.authenticate().then(
     function() {
-        console.log('Connected to recipe-list postgres database');
+        console.log('Connected to recipe-list postgress database');
     },
-    function (err){
+    function(err){
         console.log(err);
     }
 );
