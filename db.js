@@ -1,16 +1,16 @@
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('recipe-list', 'postgres', 'Password', {
+const sequelize = new Sequelize('recipe-list', 'postgres', 'password', {
     host: 'localhost',
     dialect: 'postgres'
 });
 
 sequelize.authenticate().then(
     function() {
-        console.log('Connected to recipe-list postgres database');
+        console.log('Connected to recipe-list postgress database');
     },
     function(err){
-        console.log(err)
+        console.log(err);
     }
 );
 
