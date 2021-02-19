@@ -5,6 +5,14 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             unique: true
         },
+        entry: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        rating: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
         title: {
             type: DataTypes.STRING,
             allowNull: false
