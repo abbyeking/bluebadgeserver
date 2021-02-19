@@ -28,7 +28,7 @@ router.post('/create', function (req, res) {
 router.get('/', (req, res) => {
     
     Recipe.findAll()
-       
+
         .then(recipes => res.status(200).json(recipes))
         
         .catch(err =>res.status(500).json({ error: err }))
