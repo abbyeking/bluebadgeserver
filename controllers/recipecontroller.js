@@ -25,7 +25,7 @@ router.post('/create', function (req, res) {
 });
 
 
-// FIND ALL RECIPES FOR INDIVIDUAL USER
+// FIND ALL THE RECIPES FOR INDIVIDUAL USER
 router.get('/', (req, res) => {
     
     Recipe.findAll()
