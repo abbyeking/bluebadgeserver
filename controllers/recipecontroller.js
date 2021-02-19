@@ -25,6 +25,7 @@ router.post('/create', function (req, res) {
 });
 
 
+
 router.put('/update/:entryId', validateSession, function (req, res) {
     
     const updateRecipeEntry = {
@@ -44,5 +45,28 @@ router.put('/update/:entryId', validateSession, function (req, res) {
         
         .catch((err) => res.status(500).json({ error: err}))
 });
+
+
+// FIND ALL THE RECIPES FOR INDIVIDUAL USER
+router.get('/', (req, res) => {
+    
+    Recipe.findAll()
+
+        .then(recipes => res.status(200).json(recipes))
+        
+        .catch(err =>res.status(500).json({ error: err }))
+});
+
+
+//DELETE RECIPE ENTRY
+router.delete('/delete/:id', validateSession, function (req,res) {
+    const query = {where: {id: req.params.id, owner: req.user.id}};
+
+    Recipe.destroy(query)
+    .then(() => res.status(200).json({ message: 'Recipe Removed'}))
+    .catch((err) => res.status(500).json({error: err}))
+});
+
+
 
 module.exports = router;
