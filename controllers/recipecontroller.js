@@ -1,16 +1,18 @@
 let express = require('express');
-
 const router = express.Router();
-
+let validateSession = require('../middleware/validate-session');
 const Recipe = require('../db').import('../models/recipe');
 
-router.post('/create', function (req, res) {
+///CREATE
+router.post('/create', validateSession, function (req, res) {
     Recipe.create({
-        id: req.body.user.email,
-        title: req.body,
-        image: req.body,
-        servings: req.body,
-        readyInMinutes: req.body,
+        owner: req.user.id,
+        title: req.body.title,
+        image: req.body.image,
+        servings: req.body.servings,
+        readyInMinutes: req.body.readyInMinutes,
+        entry: req.body.entry,
+        rating: req.body.rating
     })
         .then(
             function createSuccess(recipe) {
@@ -24,36 +26,30 @@ router.post('/create', function (req, res) {
         .catch(err => res.status(500).json({ error: err }))
 });
 
-//UPDATE RECIPES
-
-router.put('/update/:entryId', validateSession, function (req, res) {
-    
+///UPDATE 
+router.put('/update/:entryId', validateSession, function (req, res) {  
     const updateRecipeEntry = {
-        title: req.body.recipe.title,
+        // title: req.body.recipe.title,
         entry: req.body.recipe.entry,
         rating: req.body.recipe.rating,
     };
 
     const query = { where: { id: req.params.entryId, owner: req.user.id } };
     Recipe.update(updateRecipeEntry, query)
-        .then((recipes) => res.status(200).json(recipes))
-        .catch((err) => res.status(500).json({ error: err}))
+        .then((recipes) => res.status(200).json(recipes)) 
+        .catch((err) => res.status(500).json({ error: err }))
 });
 
-
-// FIND ALL THE RECIPES FOR INDIVIDUAL USER
+//FIND ALL THE RECIPES FOR INDIVIDUAL USER
 router.get('/', (req, res) => {
-    
     Recipe.findAll()
         .then(recipes => res.status(200).json(recipes))
         .catch(err =>res.status(500).json({ error: err }))
 });
 
-
 //DELETE RECIPE ENTRY
 router.delete('/delete/:id', validateSession, function (req,res) {
     const query = {where: {id: req.params.id, owner: req.user.id}};
-
     Recipe.destroy(query)
     .then(() => res.status(200).json({ message: 'Recipe Removed'}))
     .catch((err) => res.status(500).json({error: err}))
