@@ -1,9 +1,6 @@
 const router = require('express').Router();
-
-const User = require('../db').import('../models/user');
-
+const User = require('../db').import('../models/user.js');
 const jwt = require('jsonwebtoken');
-
 const bcrypt = require('bcryptjs');
 
 //USER SIGNUP

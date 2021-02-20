@@ -1,9 +1,10 @@
 let express = require('express');
 const router = express.Router();
+let validateSession = require('../middleware/validate-session');
 const Recipe = require('../db').import('../models/recipe');
 
 ///CREATE
-router.post('/create', function (req, res) {
+router.post('/create', validateSession, function (req, res) {
     Recipe.create({
         owner: req.user.id,
         title: req.body.title,
@@ -11,7 +12,8 @@ router.post('/create', function (req, res) {
         servings: req.body.servings,
         readyInMinutes: req.body.readyInMinutes,
         entry: req.body.entry,
-        rating: req.body.rating
+        rating: req.body.rating,
+        rId: req.body.rId
     })
         .then(
             function createSuccess(recipe) {
@@ -29,8 +31,8 @@ router.post('/create', function (req, res) {
 router.put('/update/:entryId', validateSession, function (req, res) {  
     const updateRecipeEntry = {
         // title: req.body.recipe.title,
-        entry: req.body.recipe.entry,
-        rating: req.body.recipe.rating,
+        entry: req.body.entry,
+        rating: req.body.rating,
     };
 
     const query = { where: { id: req.params.entryId, owner: req.user.id } };
