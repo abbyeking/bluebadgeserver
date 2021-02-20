@@ -29,6 +29,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: true
         },
+        owner: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        }
     })
     return Recipe;
 }
