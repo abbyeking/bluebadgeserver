@@ -14,7 +14,7 @@ router.post('/create', function (req, res) {
     })
         .then(
             function createSuccess(recipe) {
- 
+
                 res.json({
                     recipe: recipe,
                     message: 'Recipe added',
