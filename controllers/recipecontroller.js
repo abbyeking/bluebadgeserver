@@ -12,7 +12,8 @@ router.post('/create', validateSession, function (req, res) {
         servings: req.body.servings,
         readyInMinutes: req.body.readyInMinutes,
         entry: req.body.entry,
-        rating: req.body.rating
+        rating: req.body.rating,
+        rId: req.body.rId
     })
         .then(
             function createSuccess(recipe) {
@@ -30,8 +31,8 @@ router.post('/create', validateSession, function (req, res) {
 router.put('/update/:entryId', validateSession, function (req, res) {  
     const updateRecipeEntry = {
         // title: req.body.recipe.title,
-        entry: req.body.recipe.entry,
-        rating: req.body.recipe.rating,
+        entry: req.body.entry,
+        rating: req.body.rating,
     };
 
     const query = { where: { id: req.params.entryId, owner: req.user.id } };
