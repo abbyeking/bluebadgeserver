@@ -11,6 +11,11 @@ sequelize.sync();
 //above line will create and resets the database with the force: true
 //comment out to update database
 app.use(require("./middleware/headers"));
+app.options('*', (req, res) => {
+    res.json({
+      status: 'OK'
+    });
+  });
 app.use(express.json());
 
 app.use('/user', user);
