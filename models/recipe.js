@@ -5,29 +5,17 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             unique: true
         },
-        entry: {
+        notes: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         rating: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            allowNull: true,
         },
         title: {
             type: DataTypes.STRING,
             allowNull: false
-        },
-        image: {
-            type: DataTypes.STRING,
-            allowNull: true
-        },
-        servings: {
-            type: DataTypes.INTEGER,
-            allowNull: true
-        },
-        readyInMinutes: {
-            type: DataTypes.INTEGER,
-            allowNull: true
         },
         owner: {
             type: DataTypes.INTEGER,
