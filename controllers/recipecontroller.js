@@ -8,11 +8,6 @@ router.post('/create', validateSession, function (req, res) {
     Recipe.create({
         owner: req.user.id,
         title: req.body.title,
-        image: req.body.image,
-        servings: req.body.servings,
-        readyInMinutes: req.body.readyInMinutes,
-        entry: req.body.entry,
-        rating: req.body.rating,
         rId: req.body.rId
     })
         .then(
