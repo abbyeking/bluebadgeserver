@@ -37,8 +37,11 @@ router.put('/update/:entryId', validateSession, function (req, res) {
 });
 
 //FIND ALL THE RECIPES FOR INDIVIDUAL USER
-router.get('/', (req, res) => {
-    Recipe.findAll()
+router.get('/', validateSession, (req, res) => {
+    let userid = req.user.id
+    Recipe.findAll({
+        where: {owner: userid}
+    })
         .then(recipes => res.status(200).json(recipes))
         .catch(err =>res.status(500).json({ error: err }))
 });
