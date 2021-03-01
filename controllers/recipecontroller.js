@@ -8,11 +8,6 @@ router.post('/create', validateSession, function (req, res) {
     Recipe.create({
         owner: req.user.id,
         title: req.body.title,
-        image: req.body.image,
-        servings: req.body.servings,
-        readyInMinutes: req.body.readyInMinutes,
-        entry: req.body.entry,
-        rating: req.body.rating,
         rId: req.body.rId
     })
         .then(
@@ -42,8 +37,11 @@ router.put('/update/:entryId', validateSession, function (req, res) {
 });
 
 //FIND ALL THE RECIPES FOR INDIVIDUAL USER
-router.get('/', (req, res) => {
-    Recipe.findAll()
+router.get('/', validateSession, (req, res) => {
+    let userid = req.user.id
+    Recipe.findAll({
+        where: {owner: userid}
+    })
         .then(recipes => res.status(200).json(recipes))
         .catch(err =>res.status(500).json({ error: err }))
 });
@@ -57,3 +55,5 @@ router.delete('/delete/:id', validateSession, function (req,res) {
 });
 
 module.exports = router;
+
+//git
