@@ -3,7 +3,7 @@ const router = express.Router();
 let validateSession = require('../middleware/validate-session');
 const Recipe = require('../db').import('../models/recipe');
 
-///CREATE
+///CREATE A RECIPE
 router.post('/create', validateSession, function (req, res) {
     Recipe.create({
         owner: req.user.id,
