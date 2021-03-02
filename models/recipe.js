@@ -17,6 +17,18 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         },
+        // image: {
+        //     type: DataTypes.STRING,
+        //     allowNull: true
+        // },
+        // servings: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: true
+        // },
+        // readyInMinutes: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: true
+        // },
         owner: {
             type: DataTypes.INTEGER,
             allowNull: false
