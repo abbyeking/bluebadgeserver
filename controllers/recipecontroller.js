@@ -27,7 +27,7 @@ router.put('/update/:entryId', validateSession, function (req, res) {
     const updateRecipeEntry = {
         // title: req.body.recipe.title,
         entry: req.body.entry,
-        rating: req.body.rating,
+        title: req.body.title,
     };
 
     const query = { where: { id: req.params.entryId, owner: req.user.id } };
