@@ -8,7 +8,11 @@ router.post('/create', validateSession, function (req, res) {
     Recipe.create({
         owner: req.user.id,
         title: req.body.title,
-        rId: req.body.rId
+        rId: req.body.rId,
+        image: req.body.image,
+        servings: req.body.servings,
+        readyInMinutes: req.body.readyInMinutes,
+        sourceUrl: req.body.sourceUrl
     })
         .then(
             function createSuccess(recipe) {
@@ -25,7 +29,6 @@ router.post('/create', validateSession, function (req, res) {
 ///UPDATE 
 router.put('/update/:entryId', validateSession, function (req, res) {  
     const updateRecipeEntry = {
-        // title: req.body.recipe.title,
         entry: req.body.entry,
         title: req.body.title,
     };

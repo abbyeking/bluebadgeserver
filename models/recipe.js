@@ -23,19 +23,19 @@ module.exports = (sequelize, DataTypes) => {
         },
         image: {
             type: DataTypes.STRING,
-            allowNull: true
+            allowNull: false
         },
         servings: {
             type: DataTypes.INTEGER,
-            allowNull: true
+            allowNull: false
         },
         readyInMinutes: {
             type: DataTypes.INTEGER,
-            allowNull: true
+            allowNull: false
         },
-        sourceURL: {
+        sourceUrl: {
             type: DataTypes.STRING,
-            allowNull: true
+            allowNull: false
         },
     })
     return Recipe;
