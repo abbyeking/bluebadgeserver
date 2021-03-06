@@ -9,7 +9,6 @@ router.post('/signup', function (req, res) {
     User.create({
         email: req.body.user.email,
         password: bcrypt.hashSync(req.body.user.password, 13)
-        // password: req.body.user.password
     })
         .then(
             function createSuccess(user) {
@@ -26,6 +25,7 @@ router.post('/signup', function (req, res) {
 });
 
 //USER LOGIN
+
 router.post('/login', function (req, res) {
     User.findOne({
         where: {
@@ -35,7 +35,6 @@ router.post('/login', function (req, res) {
         .then(function loginSuccess(user) {
             if (user) {
                 bcrypt.compare(req.body.user.password, user.password, function (err, matches) {
-                // compare(req.body.user.password, user.password, function (err, matches) {
                     if (matches) {
                         let token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: 60 * 60 * 24 });
                         res.status(200).json({
