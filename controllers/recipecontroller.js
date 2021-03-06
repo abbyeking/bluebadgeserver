@@ -25,7 +25,6 @@ router.post('/create', validateSession, function (req, res) {
 ///UPDATE 
 router.put('/update/:entryId', validateSession, function (req, res) {  
     const updateRecipeEntry = {
-        // title: req.body.recipe.title,
         entry: req.body.entry,
         title: req.body.title,
     };
@@ -55,5 +54,3 @@ router.delete('/delete/:id', validateSession, function (req,res) {
 });
 
 module.exports = router;
-
-//git
