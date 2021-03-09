@@ -29,7 +29,7 @@ router.post('/create', validateSession, function (req, res) {
 ///UPDATE 
 router.put('/update/:entryId', validateSession, function (req, res) {  
     const updateRecipeEntry = {
-        entry: req.body.entry,
+        notes: req.body.notes,
         title: req.body.title,
     };
 
