@@ -7,7 +7,7 @@ let recipe = require('./controllers/recipecontroller');
 let user = require('./controllers/usercontroller');
 
 sequelize.sync();
-// sequelize.sync({force: true})
+//sequelize.sync({force: true})
 //above line will create and resets the database with the force: true
 //comment out to update database
 // 
